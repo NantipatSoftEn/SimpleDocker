@@ -1,28 +1,25 @@
-FROM node:12.13-alpine As development
+FROM node:14-slim
 
+# Create and change to the app directory.
 WORKDIR /usr/src/app
 
-COPY package*.json ./
-COPY tsconfig*.json ./
-RUN npm install --only=development
-
-COPY . .
-
-RUN npm run build
-
-FROM node:12.13-alpine as production
-
-ARG NODE_ENV=production
-ENV NODE_ENV=${NODE_ENV}
-
-WORKDIR /home/army/
-
+# Copy application dependency manifests to the container image.
+# A wildcard is used to ensure both package.json AND package-lock.json are copied.
+# Copying this separately prevents re-running npm install on every code change.
 COPY package*.json ./
 
-RUN npm install --only=production
+# Install dependencies.
+# If you add a package-lock.json speed your build by switching to 'npm ci'.
+RUN npm ci --only=production
 
+# Copy local code to the container image.
 COPY . .
 
-COPY --from=development /usr/src/app/dist ./dist
+# Display directory structure
+RUN ls -l
 
-CMD ["node", "dist/main"]
+# Expose API port
+EXPOSE 3000
+
+# Run the web service on container startup.
+CMD [ "npm", "start" ]
