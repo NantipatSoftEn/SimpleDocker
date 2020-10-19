@@ -1,18 +1,28 @@
-FROM node:14 As development
+FROM node:12.13-alpine As development
 
-WORKDIR //app
-WORKDIR  /home/army/
+WORKDIR /usr/src/app
 
 COPY package*.json ./
 COPY tsconfig*.json ./
+RUN npm install --only=development
 
-RUN npm install
+COPY . .
+
 RUN npm run build
 
-FROM node:14 as production
+FROM node:12.13-alpine as production
 
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 
-EXPOSE 3000
-CMD ["npm", "start"]
+WORKDIR /home/army/
+
+COPY package*.json ./
+
+RUN npm install --only=production
+
+COPY . .
+
+COPY --from=development /usr/src/app/dist ./dist
+
+CMD ["node", "dist/main"]
