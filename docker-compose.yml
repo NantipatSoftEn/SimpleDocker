@@ -4,8 +4,7 @@ services:
     container_name: nestjs
     build: 
       context: ./backend
-      dockerfile: Dockerfile
-    image: nestjs/nestjs
+    image: nestjs
     ports:
      - "3000:3000"
     volumes:
