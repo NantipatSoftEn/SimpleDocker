@@ -1,7 +1,7 @@
 FROM node:14-alpine
 WORKDIR /usr/src/app
 COPY ./package*.json ./
-RUN npm install
+RUN npm ci --only=production --no-optional
 COPY . .
 RUN ls -l
 EXPOSE 3000

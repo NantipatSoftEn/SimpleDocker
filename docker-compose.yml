@@ -2,12 +2,10 @@ version: '3'
 services:
   backend:
     container_name: nestjs
-    build: 
-      context: ./ 
-      dockerfile: Dockerfile
+    build: .
     image: nestjs
     ports:
-     - "3000:9999"
+     - "3000:3000"
     volumes:
      - ./usr/src/app
 
