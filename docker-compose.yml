@@ -27,4 +27,13 @@ services:
     environment:
       MYSQL_USERNAME: root
       MYSQL_ROOT_PASSWORD: root
-      PMA_HOST: mysql  
+      PMA_HOST: mysql
+  
+  nginx:
+    image: nginx
+    container_name: nginx
+    # volumes:
+    # - ./web/index.html:/usr/share/nginx/html/index.html
+    # - ./nginx/default.conf:/etc/nginx/default.conf
+    ports:
+      - "80:81"
