@@ -3,7 +3,7 @@ services:
   backend:
     container_name: nestjs
     build: 
-      context: ./backend  
+      context: ./ 
     image: nestjs
     ports:
      - "3000:3000"
