@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
     image: nestjs
     ports:
-     - "3000:3000"
+     - "3000:9999"
     volumes:
      - ./usr/src/app
 
