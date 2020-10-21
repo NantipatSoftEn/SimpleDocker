@@ -5,7 +5,26 @@ services:
     build: .
     image: nestjs
     ports:
-     - "3000:3000"
+      - '9999:3000'
     volumes:
-     - ./usr/src/app
+      - ./usr/src/app
+  mysql:
+    image: mysql:5.7
+    container_name: dev_mysql
+    environment:
+        - MYSQL_ROOT_PASSWORD=root
+        - MYSQL_DATABASE=test
+    ports:
+      - '3306:3006'
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    ports:
+      - "8000:80"
+    links:
+      - mysql
+    environment:
+      MYSQL_USERNAME: root
+      MYSQL_ROOT_PASSWORD: root
+      PMA_HOST: mysql  
