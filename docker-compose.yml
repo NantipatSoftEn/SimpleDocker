@@ -3,10 +3,10 @@ services:
   backend:
     container_name: nestjs
     build: 
-      context: ./backend
+      context: ./backend  
     image: nestjs
     ports:
      - "3000:3000"
     volumes:
-     - ./backend:/usr/src/app
+     - ./usr/src/app
 
