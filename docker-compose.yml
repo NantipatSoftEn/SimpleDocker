@@ -36,4 +36,4 @@ services:
     # - ./web/index.html:/usr/share/nginx/html/index.html
     # - ./nginx/default.conf:/etc/nginx/default.conf
     ports:
-      - "80:81"
+      - "81:81"
