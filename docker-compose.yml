@@ -15,7 +15,7 @@ services:
         - MYSQL_ROOT_PASSWORD=root
         - MYSQL_DATABASE=test
     ports:
-      - '3306:3007'
+      - '3307:3007'
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
