@@ -1,38 +1,39 @@
 version: '3'
 services:
   backend:
-    container_name: nestjs
+    # container_name: nestjs
     build: .
-    image: nestjs
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    # image: nestjs
     ports:
       - '9999:3001'
     volumes:
       - ./usr/src/app
-  mysql:
-    image: mysql:5.7
-    container_name: dev_mysql
-    environment:
-        - MYSQL_ROOT_PASSWORD=root
-        - MYSQL_DATABASE=test
-    ports:
-      - '3307:3007'
+  # mysql:
+  #   image: mysql:5.7
+  #   container_name: dev_mysql
+  #   environment:
+  #       - MYSQL_ROOT_PASSWORD=root
+  #       - MYSQL_DATABASE=test
+  #   ports:
+  #     - '3307:3007'
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
-    ports:
-      - "8000:80"
-    links:
-      - mysql
-    environment:
-      MYSQL_USERNAME: root
-      MYSQL_ROOT_PASSWORD: root
-      PMA_HOST: mysql
-  nginx:
-    image: nginx:alpine
-    container_name: nginx
-    # volumes:
-    #  - ./www:/www
-    #  - ./nginx/conf.d:/etc/nginx/conf.d
-    ports:
-      - "80:80"
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin
+  #   container_name: phpmyadmin
+  #   ports:
+  #     - "8000:80"
+  #   links:
+  #     - mysql
+  #   environment:
+  #     MYSQL_USERNAME: root
+  #     MYSQL_ROOT_PASSWORD: root
+  #     PMA_HOST: mysql
+  # nginx:
+  #   image: nginx:alpine
+  #   container_name: nginx
+  #   # volumes:
+  #   #  - ./www:/www
+  #   #  - ./nginx/conf.d:/etc/nginx/conf.d
+  #   ports:
+  #     - "80:80"

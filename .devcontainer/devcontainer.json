@@ -1,0 +1,8 @@
+{
+  "name": "local-Simple",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "backend",
+  "forwardPorts": [8000],
+  "workspaceFolder": "/usr/src/app",
+  "shutdownAction": "stopCompose"
+}
